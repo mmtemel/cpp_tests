@@ -6,6 +6,10 @@
 using namespace std;
 
 class Solution {
+	int gcd(int a, int b)
+	{
+		return b == 0 ? a : gcd(b, a % b);
+	}
 	array<int, 2> maxGcd(vector<int>& nums)
 	{
 		array<int, 2> maxidx; 
