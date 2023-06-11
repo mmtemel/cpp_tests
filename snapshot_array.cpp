@@ -6,25 +6,31 @@ using namespace std;
 
 class SnapshotArray {
 public:
-    vector<int> v;
+    vector<map<int, int>> v;
     int ss = 0;
-    map<int, vector<int>> m;
     SnapshotArray(int length) {
-        v.resize(length, 0);
+        v.resize(length);
+        for(int i = 0; i < length; i++)
+            v[i][ss] = 0;
     }
     
     void set(int index, int val) {
-        v[index] = val;
+        v[index][ss] = val;
     }
     
     int snap() {
         ss++;
-        m[ss-1] = v;
         return (ss-1);
     }
     
     int get(int index, int snap_id) {
-        return m[snap_id][index];
+        map<int, int>::iterator it = v[index].find(snap_id);
+        if(it == v[index].end())
+        {
+            it = --v[index].lower_bound(snap_id);
+            return it->second;
+        }
+        return v[index][snap_id];
     }
 };
 
