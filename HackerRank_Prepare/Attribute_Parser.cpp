@@ -32,7 +32,7 @@ int main() {
         int i = 0;
         while(i < s.size())
         {
-
+            
         }
     }
     return 0;
