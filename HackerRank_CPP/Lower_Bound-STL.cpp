@@ -18,30 +18,35 @@ int main() {
         vec.push_back(temp);
     }
     cin >> Q;
-    int j = 0;
-    int prev = 0;
+    // int j = 0;
+    // int prev = 0;
     for (size_t i = 0; i < Q; i++)
     {
         int temp = 0;
         cin >> temp;
-        while(j < N)
-        {
-            if((temp == vec[j] && j > 0 && vec[j] != vec[j-1]) || (temp == vec[j] && j == 0))
-            {
-                cout<<"Yes "<<j+1<<endl;
-                break;
-            }
-            else if((temp < vec[j] && j > 0 && temp > vec[j-1]) || (temp < vec[j] && j == 0))
-            {
-                cout<<"No "<<j+1<<endl;
-                break;
-            }
-            if (prev < temp)
-                j++;
-            else
-                j--;
-        }
-        prev = temp;
+        vector<int>::iterator low = lower_bound(vec.begin(), vec.end(), temp);
+        if(*low == temp)
+            cout<<"Yes "<<(low-vec.begin()+1)<<endl;
+        else
+            cout<<"No "<<(low-vec.begin()+1)<<endl;
+        // while(j < N)
+        // {
+        //     if((temp == vec[j] && j > 0 && vec[j] != vec[j-1]) || (temp == vec[j] && j == 0))
+        //     {
+        //         cout<<"Yes "<<j+1<<endl;
+        //         break;
+        //     }
+        //     else if((temp < vec[j] && j > 0 && temp > vec[j-1]) || (temp < vec[j] && j == 0))
+        //     {
+        //         cout<<"No "<<j+1<<endl;
+        //         break;
+        //     }
+        //     if (prev < temp)
+        //         j++;
+        //     else
+        //         j--;
+        // }
+        // prev = temp;
     }
     return 0;
 }
