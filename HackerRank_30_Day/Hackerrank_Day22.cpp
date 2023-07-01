@@ -34,15 +34,18 @@ class Solution{
                return root;
            }
         }
-        int h = 0;
+
 		int getHeight(Node* root){
             //Write your code here
             if(!root)
                 return 0;
-            else if(getHeight(root->right) == 0 && getHeight(root->left) == 0)
-                return 1;
-            h = max(h + getHeight(root->right), h + getHeight(root->left));
-            return h;
+            else if(!(root->right) && !(root->left))
+                return 0;
+            // if(root->right)
+                // cout<<"right: >"<<root->right->data<<"<\n";
+            // if(root->left)
+                // cout<<"left : >"<<root->left->data<<"<\n";
+            return max(getHeight(root->right), getHeight(root->left))+1;
         }
 
 }; //End of Solution
