@@ -9,12 +9,22 @@ void printKMax(int arr[], int n, int k){
     bool end = false;
     for (size_t i = 0; i < k; i++)
         deq.push_back(arr[i]);
-    cout<<*max_element(deq.begin(),deq.end())<<" ";
+	deque<int>::iterator max_el = max_element(deq.begin(),deq.end());
+	cout<<*max_el<<" ";
     for (size_t i = 0; i + k < n; i++)
     {
-        deq.pop_front();
-        deq.push_back(arr[i+k]);
-        cout<<*max_element(deq.begin(),deq.end())<<" ";
+		if(max_el == deq.begin()){
+        	deq.pop_front();
+        	deq.push_back(arr[i+k]);
+        	max_el = max_element(deq.begin(),deq.end());
+		}
+		else{
+        	deq.push_back(arr[i+k]);
+			if(deq.back() >= *max_el)
+				max_el = deq.end()-1;
+			deq.pop_front();
+		}
+		cout<<*max_el<<" ";
     }
     cout<<endl;
 }
